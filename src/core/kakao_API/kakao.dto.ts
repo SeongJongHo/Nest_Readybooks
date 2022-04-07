@@ -1,4 +1,3 @@
-export interface User{
-    
+export interface Kakao{
     Authorization : string
 }

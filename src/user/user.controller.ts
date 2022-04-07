@@ -7,8 +7,8 @@ export class UserController {
     constructor(private userService: UserService) {}
 
     @Get('/kakao/signin')
-    async SignIn(@Headers('Authorization') authorization: User['Authorization']){
-        if(!authorization) throw new Error("없어 auth")
-        return authorization
+    SignIn(@Headers('Authorization') authorization: User['Authorization']): object{
+        
+        return this.userService.signin(authorization)
     }
 }
