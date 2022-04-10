@@ -5,23 +5,26 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    ManyToOne,
   } from 'typeorm';
-  
-  @Entity({ name: 'cart' })
+  import { User } from './user.entity'
+  import { Book } from './book.entity'
+
+  @Entity({ name: 'carts' })
   export class Cart extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: 'bigint', comment: '유저 아이디'})
-    user_id: number;
+    @ManyToOne((type)=>User, (user)=>user.id)
+    user_id: User;
 
-    @Column({ type: 'bigint', comment: '책 아이디'})
-    book_id: number;
+    @ManyToOne((type)=>Book, (book)=>book.id)
+    book_id: Book;
 
-    @CreateDateColumn({ name: 'create_at', comment: '생성일' })
+    @CreateDateColumn({ name: 'created_at', comment: '생성일' })
     created_at: Date;
   
-    @UpdateDateColumn({ name: 'update_at', comment: '수정일' })
+    @UpdateDateColumn({ name: 'updated_at', comment: '수정일' })
     updated_at: Date;
   }
   

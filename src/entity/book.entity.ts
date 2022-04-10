@@ -7,7 +7,7 @@ import {
     UpdateDateColumn,
   } from 'typeorm';
   
-  @Entity({ name: 'book' })
+  @Entity({ name: 'books' })
   export class Book extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
@@ -30,10 +30,10 @@ import {
     @Column({ type: 'longtext', comment: '책 설명'})
     description: string;
 
-    @CreateDateColumn({ name: 'create_at', comment: '생성일' })
+    @CreateDateColumn({ name: 'created_at', comment: '생성일' })
     created_at: Date;
   
-    @UpdateDateColumn({ name: 'update_at', comment: '수정일' })
+    @UpdateDateColumn({ name: 'updated_at', comment: '수정일' })
     updated_at: Date;
   }
   
