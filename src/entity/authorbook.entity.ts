@@ -7,16 +7,16 @@ import {
     ManyToOne,
 } from 'typeorm';
 
-import { User } from './user.entity'
-import { Book } from './book.entity'
-
-@Entity({ name: 'carts' })
-export class Cart extends BaseEntity {
+import { Author } from './author.entity';
+import { Book } from './Book.entity';
+  
+@Entity({ name: 'author_books' })
+export class AuthorBook extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(()=>User, (user)=>user.id)
-    user_id: User;
+    @ManyToOne(()=>Author, (author)=>author.id)
+    author_id: Author;
 
     @ManyToOne(()=>Book, (book)=>book.id)
     book_id: Book;

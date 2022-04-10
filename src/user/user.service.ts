@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { User } from './dto/user.dto'
 import { IUser } from './interfaces/user.interface'
 import { KakaoAPI } from '../core/kakao_API/kakao.service';
-import { Book } from '../entity/book.entity'
 
 @Injectable()
 export class UserService {                              

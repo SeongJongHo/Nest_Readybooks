@@ -5,13 +5,17 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
-  } from 'typeorm';
+    OneToMany
+} from 'typeorm';
+
+import { AuthorBook } from './authorbook.entity'
+import { Cart } from './cart.entity'
   
-  @Entity({ name: 'books' })
-  export class Book extends BaseEntity {
+@Entity({ name: 'books' })
+export class Book extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
-  
+
     @Column({ type: 'varchar', length: 1000, comment: '썸네일 이미지' })
     thumbnail: string;
 
@@ -32,8 +36,14 @@ import {
 
     @CreateDateColumn({ name: 'created_at', comment: '생성일' })
     created_at: Date;
-  
+
     @UpdateDateColumn({ name: 'updated_at', comment: '수정일' })
     updated_at: Date;
-  }
+
+    @OneToMany(()=> AuthorBook, (authorbook)=>authorbook.book_id)
+    authorbook: AuthorBook[];
+
+    @OneToMany(()=> Cart, (cart)=>cart.book_id)
+    cart: Cart[];
+}
   
