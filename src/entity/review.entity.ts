@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { Book } from './book.entity'
-import { Order } from './order.entity'
+import { User } from './user.entity'
 
 @Entity({ name: 'reviews' })
 export class Review extends BaseEntity {
@@ -34,6 +34,6 @@ export class Review extends BaseEntity {
     @ManyToOne(()=>Book, (book)=>book.id)
     book_id: Book;
 
-    @ManyToOne(()=>Order, (user)=>user.id)
-    user_id: Order;
+    @ManyToOne(()=>User, (user)=>user.id)
+    user_id: User;
 }

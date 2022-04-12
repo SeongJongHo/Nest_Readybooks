@@ -1,13 +1,13 @@
 import { Controller, Get, Headers } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from './dto/user.dto'
+import { createUser } from './dto/user.dto'
 
 @Controller('user')
 export class UserController {
     constructor(private userService: UserService) {}
 
     @Get('/kakao/signin')
-    SignIn(@Headers('Authorization') authorization: User['Authorization']): object{
+    SignIn(@Headers('Authorization') authorization: createUser['Authorization']): object{
         
         return this.userService.signin(authorization)
     }

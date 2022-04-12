@@ -15,10 +15,10 @@ export class Cart extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(()=>User, (user)=>user.id)
+    @ManyToOne(()=>User, (user)=>user.id, { cascade : true , nullable : false })
     user_id: User;
 
-    @ManyToOne(()=>Book, (book)=>book.id)
+    @ManyToOne(()=>Book, (book)=>book.id, { cascade : true , nullable : false })
     book_id: Book;
 
     @CreateDateColumn({ name: 'created_at', comment: '생성일' })

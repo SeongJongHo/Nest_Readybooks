@@ -5,20 +5,21 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
+    JoinColumn
 } from 'typeorm';
 
 import { Author } from './author.entity';
-import { Book } from './Book.entity';
+import { Book } from './book.entity';
   
 @Entity({ name: 'author_books' })
 export class AuthorBook extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(()=>Author, (author)=>author.id)
+    @ManyToOne(()=>Author, (author)=>author.id, { cascade : true , nullable : false })
     author_id: Author;
 
-    @ManyToOne(()=>Book, (book)=>book.id)
+    @ManyToOne(()=>Book, (book)=>book.id, { cascade : true , nullable : false })
     book_id: Book;
 
     @CreateDateColumn({ name: 'created_at', comment: '생성일' })

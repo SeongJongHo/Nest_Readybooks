@@ -14,7 +14,7 @@ import {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(()=>User, (user)=>user.id)
+    @ManyToOne(()=>User, (user)=>user.id, { cascade : true , nullable : false })
     user_id: User;
 
     @Column({ type: 'varchar', length: 500, comment: '주문번호'})
