@@ -9,30 +9,27 @@ import { User } from '../entity/user.entity'
 
 @Injectable()
 export class UserService {   
-    constructor( @InjectRepository(User) private userRepository: Repository<User>, ) {
-         this.userRepository = userRepository; 
-        }
 
     async signin(authorization: createUser['Authorization']): Promise<IUser>{
         const kakao: KakaoAPI= new KakaoAPI(authorization)
         const kakao_data: object= await kakao.get_kakao_user()
 
-        let user = await this.userRepository.findOne({kakao_id: kakao_data['id']})
+        let user = await User.findOne({kakao_id: kakao_data['id']})
             .catch(err=>{
             err.message = 'DB_ERROR'
             err.status = 400
             throw new Error(err)})
 
         if (!user){
-            user = await this.userRepository.save({
-                kakao_id: kakao_data['id'],
-                nickname: kakao_data["kakao_account"]["profile"]["nickname"],
-                profile_img: kakao_data["kakao_account"]["profile"]["profile_image_url"]
-            })
-            .catch(err=>{
-            err.message = 'DB_ERROR'
-            err.status = 400
-            throw new Error(err)})
+            // user = await this.userRepository.save({
+            //     kakao_id: kakao_data['id'],
+            //     nickname: kakao_data["kakao_account"]["profile"]["nickname"],
+            //     profile_img: kakao_data["kakao_account"]["profile"]["profile_image_url"]
+            // })
+            // .catch(err=>{
+            // err.message = 'DB_ERROR'
+            // err.status = 400
+            // throw new Error(err)})
         }
 
         const userData: IUser= {
