@@ -20,18 +20,6 @@ export class UserService {
             err.status = 400
             throw new Error(err)})
 
-        if (!user){
-            // user = await this.userRepository.save({
-            //     kakao_id: kakao_data['id'],
-            //     nickname: kakao_data["kakao_account"]["profile"]["nickname"],
-            //     profile_img: kakao_data["kakao_account"]["profile"]["profile_image_url"]
-            // })
-            // .catch(err=>{
-            // err.message = 'DB_ERROR'
-            // err.status = 400
-            // throw new Error(err)})
-        }
-
         const userData: IUser= {
             Authorization: "test",
             user_nickname: user.nickname,
